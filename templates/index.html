@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Followers Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel ="shortcut icon" href ="{{ url_for('static', filename='icon.png') }}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Check who is not following you back</h1>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file1">Select file with who You are following (Following.txt):</label>
+                <input type="file" name="file1" id="file1" required>
+            </div>
+            <div class="form-group">
+                <label for="file2">Select file with who is following you (Followers.txt):</label>
+                <input type="file" name="file2" id="file2" required>
+            </div>
+            <button type="submit">Send</button>
+        </form>
+        {% if result %}
+            <div class="result">
+                <h2>Results:</h2>
+                <ul>
+                    {% for line in result %}
+                        <li>{{ line }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
